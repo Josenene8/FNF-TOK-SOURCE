@@ -135,7 +135,9 @@ class CreditsState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
-
+                 #if android
+		 addVirtualPad(FULL, A_B);
+		 #end
 		super.create();
 	}
 
