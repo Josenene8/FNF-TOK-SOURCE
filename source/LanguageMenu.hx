@@ -18,9 +18,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
-#if newgrounds 
 import io.newgrounds.NG;
-#end
 import lime.app.Application;
 import lime.utils.Assets;
 import flixel.math.FlxMath;
@@ -111,10 +109,6 @@ class LanguageMenu extends FlxSubState
         //OptionsMenu.instance.acceptInput = false;
 
 		super.create();
-		
-		#if android
-		addVirtualPad(LEFT_RIGHT, A_B); 
-		#end
 	}
 
 	override function update(elapsed:Float)
@@ -123,7 +117,7 @@ class LanguageMenu extends FlxSubState
         switch(state){
 
             case "select":
-                if (controls.LEFT_P)
+                if (FlxG.keys.justPressed.LEFT)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					curSelected -= 1;
@@ -133,7 +127,7 @@ class LanguageMenu extends FlxSubState
                     changeItem();
 				}
 
-				if (controls.RIGHT_P)
+				if (FlxG.keys.justPressed.RIGHT)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					curSelected += 1;
@@ -143,7 +137,7 @@ class LanguageMenu extends FlxSubState
                     changeItem();
 				}
 
-                else if(controls.ACCEPT){
+                else if(FlxG.keys.justPressed.ENTER){
                     quit();
                 }
             case "exiting":
